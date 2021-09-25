@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0 auto;
+        }
+
+        header {
+            background-image: url(images/main.jpg);
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            width: 375px;
+            height: 400px;
+            position: relative;
+        }
+
+        .header_img {
+            position: absolute;
+            top: 150px;
+            right: 30px;
+            text-align: center;
+        }
+
+        .header_box {
+            color: #fff;
+            border: 1px solid silver;
+            background-color: rgba(192, 192, 192, .8);
+            font-size: 40px;
+            padding: 5px 55px;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+
+        .message {
+            font-size: 20px;
+        }
+
+        .first_msg {
+            margin: 10px 0 15px 50px;
+
+
+        }
+
+        .second_msg {
+            margin: 10px 0 15px 100px;
+        }
+
+        .choice {
+            text-align: center;
+            font-size: 24px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        .janken {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin: 10px auto;
+
+        }
+
+        .item {
+            width: 100px;
+            box-shadow: 0 0 0 1px black;
+            margin: 0;
+            padding: 0 10px;
+        }
+
+        .item:hover {
+            background-color: gray;
+            cursor: pointer;
+            transition: background-color .5s;
+        }
+
+        .gu {
+            background-color: blue;
+        }
+
+        .choki {
+            background-color: blueviolet;
+        }
+
+        .pa {
+            background-color: chartreuse;
+        }
+
+        .option_gu {
+            display: none;
+        }
+
+        .option_choki {
+            display: none;
+        }
+
+        .option_pa {
+            display: none;
+        }
+
+
+        main {
+            height: 100%;
+            margin: 40px 10px;
+            display: flex;
+        }
+
+        .option {
+            margin-top: 10px;
+        }
+
+        .vs {
+            margin-top: 50px;
+        }
+
+        .cp {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .cp img {
+            max-width: 100%;
+        }
+
+        #gu_cp {
+            display: none;
+            margin-top: 10px;
+        }
+
+        #choki_cp {
+            display: none;
+            margin-top: 10px;
+
+        }
+
+        #pa_cp {
+            display: none;
+            margin-top: 10px;
+
+        }
+
+        .button {
+            text-align: center;
+        }
+
+        .button button {
+            font-size: 24px;
+            font-weight: bold;
+            border: 1px solid #0f0f0f;
+            padding: 10px 35px;
+            box-shadow: 0 2px 3px rgb(0 0 0 / 30%),
+                0 0 6px rgb(128 128 128 / 30%);
+            cursor: pointer;
+
+        }
+
+        .comment {
+            text-align: center;
+            position: relative;
+            height: 100%;
+        }
+
+        .show {
+            font-size: 45px;
+            font-weight: bold;
+            color: red;
+            position: absolute;
+            width: 100%;
+            background-color: #000;
+            height: 100px;
+            bottom: 0;
+            display: block;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header_img">
+            <div class="header_box">
+                じゃんけん<br>アプリ✌
+            </div>
+        </div>
+    </header>
+
+    <div class="message">
+        <div class="first_msg">
+            <strong>さいしょはぐー</strong>
+        </div>
+        <div class="second_msg">
+            <strong>じゃんけん、、、</strong>
+        </div>
+    </div>
+
+    <div class="choice">
+        <p><span>▽</span>選択してください</p>
+    </div>
+
+
+    <div class="janken" id="janken">
+        <img class="item gu" id="gu" src="images/gu.png" alt="">
+        <img class="item choki" id="choki" src="images/choki.png" alt="">
+        <img class="item pa" id="pa" src="images/pa.png" alt="">
+    </div>
+
+    <main>
+        <div class="option" id="option">
+            <img class="item gu option_gu" id="gu_show" src="images/gu.png" alt="">
+            <img class="item choki option_choki" id="choki_show" src="images/choki.png" alt="">
+            <img class="item pa option_pa" id="pa_show" src="images/pa.png" alt="">
+            あなた
+        </div>
+
+
+        <div class="vs">
+            <p>VS</p>
+        </div>
+
+        <div class="cp">
+            <img id="question_img" src="images/question.jpg" alt="">
+            <img class="item gu" id="gu_cp" src="images/gu.png" alt="">
+            <img class="item choki" id="choki_cp" src="images/choki.png" alt="">
+            <img class="item pa" id="pa_cp" src="images/pa.png" alt="">
+            あいて
+        </div>
+
+
+    </main>
+
+    <div class="button" id="button">
+        <button>勝負!</button>
+    </div>
+
+    <div class="comment">
+        <p id="comment">ここに表示する</p>
+    </div>
+
+    <div class="again">
+        <a href="" class="again_text">もう一回！</a>
+    </div>
+
+
+    <footer>
+
+    </footer>
+
+    <script src="jQuery/jquery-3.6.0.min.js"></script>
+    <script>
+        "use strict"
+
+
+        console.log("処理開始");
+
+        /*
+        $(document).ready(function () {
+            $("gu").on("click", function () {
+                console.log("処理開始");
+                $("gu_show").removeClass("option_gu");
+            });
+        });
+        */
+
+        var gu_show = document.getElementById("gu_show");
+        var choki_show = document.getElementById("choki_show");
+        var pa_show = document.getElementById("pa_show");
+        var choice_gu = 0;
+        var choice_choki = 0;
+        var choice_pa = 0;
+
+
+        document.getElementById("gu").addEventListener("click", function () {
+            console.log("✊取得しました");
+            gu_show.style = "display : block;";
+            choki_show.style = "display : none;";
+            pa_show.style = "display : none;";
+            choice_gu = 1;
+            choice_choki = 0;
+            choice_pa = 0;
+        });
+
+        document.getElementById("choki").addEventListener("click", function () {
+            console.log("✌取得しました");
+            gu_show.style = "display : none;";
+            choki_show.style = "display : block;";
+            pa_show.style = "display : none;";
+            choice_gu = 0;
+            choice_choki = 1;
+            choice_pa = 0;
+        });
+
+        document.getElementById("pa").addEventListener("click", function () {
+            console.log("✋取得しました");
+            gu_show.style = "display : none;";
+            choki_show.style = "display : none;";
+            pa_show.style = "display : block;";
+            choice_gu = 0;
+            choice_choki = 0;
+            choice_pa = 1;
+        });
+
+        var random = Math.floor(Math.random() * 3);
+
+        if (random === 0) {
+            document.getElementById("button").addEventListener("click", function () {
+                gu_cp.style = "display : block;";
+                question_img.style = "display : none;";
+            });
+        } else if (random === 1) {
+            document.getElementById("button").addEventListener("click", function () {
+                choki_cp.style = "display : block;";
+                question_img.style = "display : none;";
+            });
+        } else {
+            document.getElementById("button").addEventListener("click", function () {
+                pa_cp.style = "display : block;";
+                question_img.style = "display : none;";
+            });
+        }
+
+        console.log(random);
+
+        document.getElementById("button").addEventListener("click", function () {
+
+            if (random === 0) {
+                if (choice_pa === 1) {
+                    var comment = document.getElementById("comment");
+                    comment.textContent = "あなたの勝ち！";
+                } else if (choice_gu === 1) {
+                    var comment = document.getElementById("comment");
+                    comment.textContent = "あいこ！";
+                } else {
+                    var comment = document.getElementById("comment");
+                    comment.textContent = "あなたの負け！";
+                };
+            }
+        });
+
+        document.getElementById("button").addEventListener("click", function () {
+            if (random === 1) {
+                if (choice_pa === 1) {
+                    var comment = document.getElementById("comment");
+                    comment.textContent = "あなたの負け！";
+                } else if (choice_gu === 1) {
+                    var comment = document.getElementById("comment");
+                    comment.textContent = "あなたの勝ち!";
+                } else {
+                    var comment = document.getElementById("comment");
+                    comment.textContent = "あいこ！";
+                };
+            }
+        });
+
+        document.getElementById("button").addEventListener("click", function () {
+            if (random === 2) {
+                if (choice_pa === 1) {
+                    var comment = document.getElementById("comment");
+                    comment.textContent = "あいこ！";
+                } else if (choice_gu === 1) {
+                    var comment = document.getElementById("comment");
+                    comment.textContent = "あなたの負け！";
+                } else {
+                    var comment = document.getElementById("comment");
+                    comment.textContent = "あなたの勝ち！";
+                };
+            };
+        });
+
+        $(document).ready(function () {
+            $("#button").on("click", function () {
+                $("#comment").toggleClass("show");
+            });
+        });
+
+
+        /*
+
+        */
+
+
+
+
+    </script>
+</body>
+
+</html>
